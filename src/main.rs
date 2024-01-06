@@ -10,7 +10,7 @@ fn main() {
     let mut input = String::new();
     buf.read_line(&mut input).unwrap();
 
-    println!("{}", year);
+    println!("{}", curr_year);
 }
 
 fn is_leap_year(year: u32) -> bool {
@@ -40,5 +40,25 @@ fn days_in_month(year: u32, month: u32) -> u32 {
         11 => 30,
         12 => 31,
         _ => unreachable!(),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn leap_years() {
+        assert!(is_leap_year(2000));
+        assert!(!is_leap_year(2001));
+        assert!(!is_leap_year(2002));
+        assert!(!is_leap_year(2003));
+        assert!(is_leap_year(2004));
+        assert!(!is_leap_year(2005));
+        assert!(!is_leap_year(2006));
+        assert!(is_leap_year(2020));
+        assert!(is_leap_year(2044));
+        assert!(!is_leap_year(1900));
+        assert!(!is_leap_year(2021));
     }
 }
